@@ -26,3 +26,7 @@ Mock.mock("/api/messages", "get", () => {
 
     return blogs
 } )
+
+Mock.mock("/api/total", "get", () => {
+    return Random.natural(500, 1200)
+} )

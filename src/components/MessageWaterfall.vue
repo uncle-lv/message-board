@@ -31,7 +31,10 @@
 
               <v-row align="center"
                      justify="end">
-                <v-icon class="mr-1">mdi-heart</v-icon>
+                <v-btn icon
+                       class="icon">
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
                 <span class="subheading mr-2">{{ item.like }}</span>
               </v-row>
             </v-list-item>
@@ -74,7 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .waterfall {
   margin: 0 3%;
 }
@@ -93,6 +96,10 @@ export default {
 }
 
 .content {
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
+}
+
+.icon:hover {
+  color: #e91e63 !important;
 }
 </style>
