@@ -21,6 +21,9 @@
 import InputModal from './InputModal';
 
 export default {
+  components: {
+    InputModal
+  },
 
   data () {
     return {
@@ -33,10 +36,6 @@ export default {
       console.log(response.data)
       this.total = response.data
     })
-  },
-
-  components: {
-    InputModal
   }
 }
 
