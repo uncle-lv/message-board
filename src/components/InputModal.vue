@@ -20,7 +20,7 @@
                @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>Settings</v-toolbar-title>
+        <v-toolbar-title>编辑留言</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn text
