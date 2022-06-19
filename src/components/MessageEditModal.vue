@@ -1,6 +1,5 @@
 <template>
-  <v-dialog v-dialog
-            v-model="dialog"
+  <v-dialog v-model="dialog"
             fullscreen
             hide-overlay
             transition="dialog-bottom-transition"
@@ -101,7 +100,7 @@ export default {
 
   methods: {
     submit: () => {
-      this.dialog = false
+
     },
 
     append (emoji) {

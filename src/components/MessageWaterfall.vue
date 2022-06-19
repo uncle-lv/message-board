@@ -57,17 +57,17 @@ export default {
     WaterfallItem
   },
 
+  data () {
+    return {
+      items: []
+    }
+  },
+
   mounted: function () {
     this.axios.get('/api/messages').then((response) => {
       console.log(response.data)
       this.items = response.data
     })
-  },
-
-  data () {
-    return {
-      items: []
-    }
   },
 
   methods: {
