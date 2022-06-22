@@ -2,7 +2,7 @@
   <v-app>
     <div class="background"></div>
     <div class="main-div">
-      <aplayer mini
+      <!-- <aplayer mini
                float
                mutex
                autoplay
@@ -12,15 +12,18 @@
     artist: '郭顶',
     src: 'http://music.163.com/song/media/outer/url?id=441491828.mp3',
     pic: 'http://p1.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg?param=130y130'
-  }" />
-      <app-header class="mb-5"></app-header>
-      <message-waterfall></message-waterfall>
+  }" /> -->
+      <app-header :initData="initData"
+                  :items="items"
+                  class="mb-5"></app-header>
+      <message-waterfall :initData="initData"
+                         :items="items"></message-waterfall>
     </div>
   </v-app>
 </template>
 
 <script>
-import Aplayer from 'vue-aplayer'
+// import Aplayer from 'vue-aplayer'
 
 import MessageWaterfall from './components/MessageWaterfall';
 import AppHeader from './components/AppHeader';
@@ -30,13 +33,34 @@ export default {
 
   components: {
     AppHeader,
-    MessageWaterfall,
-    Aplayer
+    MessageWaterfall
+    // Aplayer
   },
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return {
+      items: []
+    }
+  },
+
+  computed: {
+    isLogin () {
+      return ((localStorage.getItem('access_token') === null) || (localStorage.getItem('access_token') === undefined)) ? false : true;
+    }
+  },
+
+  methods: {
+    initData () {
+      let social_uid = '';
+      if (this.isLogin) {
+        social_uid = JSON.parse(localStorage.getItem('userInfo')).social_uid;
+      }
+
+      this.axios.get(`/messages?social_uid=${social_uid}`).then((response) => {
+        this.items = response.data
+      })
+    }
+  }
 };
 </script>
 

@@ -30,7 +30,8 @@
           <img :src="userInfo.faceimg"
                :title="userInfo.nickname">
         </v-avatar>
-        <message-edit-modal title="编辑留言"></message-edit-modal>
+        <message-edit-modal :initData="initData"
+                            title="编辑留言"></message-edit-modal>
       </div>
     </v-app-bar>
   </div>
@@ -52,6 +53,15 @@ export default {
     }
   },
 
+  props: {
+    initData: {
+      type: Function,
+      default: function () {
+        return undefined;
+      }
+    }
+  },
+
   computed: {
     isLogin () {
       return ((localStorage.getItem('access_token') === null) || (localStorage.getItem('access_token') === undefined)) ? false : true;
@@ -59,18 +69,16 @@ export default {
   },
 
   mounted: function () {
-    this.axios.get('/api/total').then((response) => {
-      console.log(response.data)
-      this.total = response.data
+    this.axios.get('/total').then((response) => {
+      this.total = response.data.total;
     });
-
-    console.log('userInfo', JSON.parse(localStorage.getItem('userInfo')));
 
     if (!this.isLogin) {
       const code = this.getCode();
       if (code) {
         this.axios.get(`/getUserInfo?code=${code}`).then((response) => {
           this.$store.commit(types.LOGIN, response.data);
+          // window.location.href = 'http://kizuna-ai绊爱.cn';
         })
       }
     } else {

@@ -32,7 +32,7 @@
       </v-toolbar>
       <div class="wrapper">
         <textarea class="regular-input"
-                  v-model="input"></textarea>
+                  v-model="message"></textarea>
 
         <emoji-picker @emoji="append"
                       :search="search">
@@ -87,24 +87,48 @@ export default {
     EmojiPicker
   },
 
+  props: {
+    initData: {
+      type: Function,
+      default: function () {
+        return undefined;
+      }
+    }
+  },
+
   data () {
     return {
       dialog: false,
       notifications: false,
       sound: true,
       widgets: false,
-      input: '',
       search: '',
+      message: ''
     }
   },
 
   methods: {
-    submit: () => {
-
+    submit () {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      this.axios.post('/messages', {
+        nickname: userInfo.nickname,
+        faceimg: userInfo.faceimg,
+        gender: userInfo.gender,
+        social_uid: userInfo.social_uid,
+        ip: userInfo.ip,
+        message: this.message
+      }).then((response) => {
+        if (response.status === 201) {
+          this.$message.success('发送成功');
+          this.dialog = false;
+          this.initData();
+          this.message = '';
+        }
+      });
     },
 
     append (emoji) {
-      this.input += emoji
+      this.message += emoji
     },
   },
   directives: {

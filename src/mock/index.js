@@ -16,10 +16,10 @@ Mock.mock("/api/messages", "get", () => {
     for (let i = 0; i <= Random.natural(30, 60); i++) {
         blogs.push(Mock.mock({
             id: "@increment",
-            content: Random.cword(50,120),
-            avatar_url: Random.image("250x250"),
+            message: Random.cword(50,120),
+            faceimg: Random.image("250x250"),
             nickname: Random.first(),
-            like: Random.natural(0, 500),
+            like_count: Random.natural(0, 500),
             color: getRandomColor()
         }))
     }
