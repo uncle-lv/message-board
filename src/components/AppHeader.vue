@@ -69,14 +69,15 @@ export default {
   },
 
   mounted: function () {
-    this.axios.get('/total').then((response) => {
+    this.axios.get('http://localhost:8000/total').then((response) => {
+      console.log('response', response);
       this.total = response.data.total;
     });
 
     if (!this.isLogin) {
       const code = this.getCode();
       if (code) {
-        this.axios.get(`/getUserInfo?code=${code}`).then((response) => {
+        this.axios.get(`http://localhost:8000/getUserInfo?code=${code}`).then((response) => {
           this.$store.commit(types.LOGIN, response.data);
           // window.location.href = 'http://kizuna-ai绊爱.cn';
         })
@@ -88,7 +89,7 @@ export default {
 
   methods: {
     thirdLogin (type) {
-      this.axios.get(`/login?type=${type}`).then((response) => {
+      this.axios.get(`http://localhost:8000/login?type=${type}`).then((response) => {
         const url = response.data.url;
         window.location.href = url;
       })

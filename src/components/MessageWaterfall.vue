@@ -103,7 +103,7 @@ export default {
       }
 
       const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      this.axios.post('/like', {
+      this.axios.post('http://localhost:8000/like', {
         message_id: item.id,
         social_uid: userInfo.social_uid
       }).then((response) => {

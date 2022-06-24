@@ -56,7 +56,7 @@ export default {
         social_uid = JSON.parse(localStorage.getItem('userInfo')).social_uid;
       }
 
-      this.axios.get(`/messages?social_uid=${social_uid}`).then((response) => {
+      this.axios.get(`http://localhost:8000/messages?social_uid=${social_uid}`).then((response) => {
         this.items = response.data
       })
     }

@@ -110,7 +110,7 @@ export default {
   methods: {
     submit () {
       const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      this.axios.post('/messages', {
+      this.axios.post('http://localhost:8000/messages', {
         nickname: userInfo.nickname,
         faceimg: userInfo.faceimg,
         gender: userInfo.gender,

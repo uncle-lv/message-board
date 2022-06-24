@@ -3,7 +3,14 @@ module.exports = {
     'vuetify'
   ],
   devServer: {
-    proxy: 'http://localhost:8000/',
+    // proxy: {
+    //     '/api': {
+    //         target: 'http://localhost:8000/',
+    //         pathRewrite: {
+    //             '^/api': '',
+    //       },
+    //     }
+    // },
     disableHostCheck: true
 },
 publicPath: '/'
